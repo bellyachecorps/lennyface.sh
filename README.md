@@ -61,3 +61,5 @@ Trust me ( ͡° ͜ʖ ͡°)
 ## What if I have Windows?
 
 Sucks to be you.
+
+But truly, we care for you and we plan other language forks shortly.
