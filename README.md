@@ -13,6 +13,10 @@
 
 Now just hit Ctrl-V ( ͡° ͜ʖ ͡°)
 
+# Options
+
+    --sad - makes lenny sad
+
 # How to install
 
     $ sudo bash devel/install.sh
