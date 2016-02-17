@@ -1,3 +1,16 @@
 #!/bin/bash
 
-echo '( ͡° ͜ʖ ͡°)' | xsel -ib
+lenny='( ͡° ͜ʖ ͡°)'
+
+while getopts ":-:" opt; do
+  case "${opt}" in
+    -)
+        case "${OPTARG}" in
+          sad)
+            lenny='( ͡° ʖ̯ ͡°)'
+            ;;
+        esac;;
+  esac
+done
+
+echo $lenny | xsel -ib
