@@ -16,6 +16,8 @@ Now just hit Ctrl-V ( ͡° ͜ʖ ͡°)
 # Options
 
     --sad - makes lenny sad
+    --server - runs lennyface as a server
+    -p [PORT] - set server port
 
 # How to install
 
@@ -26,6 +28,8 @@ You shouldn't review any install script, so don't think about it. It's safe ( ͡
 # Depends on
 
 * xsel (`sudo apt-get install xsel` or `sudo pacman -S xsel` or whatever)
+* OR xclip
+* socat for server
 
 # Use case
 

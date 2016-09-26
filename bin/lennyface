@@ -1,16 +1,52 @@
 #!/bin/bash
 
-lenny='( ͡° ͜ʖ ͡°)'
+LENNY='( ͡° ͜ʖ ͡°)'
+MODE='normal'
+PORT='1337'
 
-while getopts ":-:" opt; do
+warn() {
+  echo -e "[\e[34mW\e[39m]" "$@" 1>&2
+}
+
+err() {
+  echo -e "[\e[31mE\e[39m]" "$@" 1>&2
+}
+
+while getopts ":-:p:" opt; do
   case "${opt}" in
     -)
-        case "${OPTARG}" in
-          sad)
-            lenny='( ͡° ʖ̯ ͡°)'
-            ;;
-        esac;;
+      case "${OPTARG}" in
+        sad)
+          LENNY='( ͡° ʖ̯ ͡°)'
+          ;;
+        server)
+          MODE='server'
+          ;;
+      esac
+      ;;
+    p)
+      PORT="${OPTARG}"
+      ;;
   esac
 done
 
-echo $lenny | xsel -ib
+case "${MODE}" in
+  normal)
+    if hash xsel 2>/dev/null; then
+      echo $LENNY | xsel -ib
+    elif hash xclip 2>/dev/null; then
+      echo $LENNY | xclip -sel clip
+    else
+      warn "Falling back to echo"
+      echo $LENNY
+    fi
+    ;;
+  server)
+    if hash socat 2>/dev/null; then
+      echo "Listening on port $PORT"
+      socat "TCP4-LISTEN:$PORT,fork,reuseaddr" "EXEC:echo $LENNY"
+    else
+      err "No supported listening utility found"
+    fi
+    ;;
+esac
